@@ -1,0 +1,61 @@
+.cal
+{
+    padding:0em;
+    text-align: center;
+}
+
+.cal_div
+{
+    width:100%;
+    
+    background-color: #CCC;
+    padding: 0px;
+    margin: 0px;
+}
+
+.cal_cell
+{
+    font-size: 60%;
+    text-align: center;
+
+    width:14.28%;
+    height: 24px;
+    float: left;
+
+    padding-top: 3px;
+    margin:0px;
+
+    color: black;
+}
+
+.cal_fin
+{
+    float: initial;
+    clear: both;
+}
+
+.bouton
+{
+    background-color: #b7d6a5;
+    color: #000;
+    cursor: pointer;
+    border:none;
+}
+
+.njour
+{
+    background-color: #FFF;
+    font-weight: bold;
+    border-bottom:1px solid #000;
+}
+
+.jour
+{
+    background-color: #EEE;
+}
+.mois
+{
+    display: inline;
+    padding:4px;
+    color:#DDD;
+}
