@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cahier de texte S2i option Génie Mécanique Construction{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="css/bootstrap.css" media="screen"/>
+<link rel="stylesheet" href="css/cal.css" />
+<style>
+    body { background: #333; font: 18px/1.5 sans-serif; }
+    h1 { font-size: 36px; color: #FFF;}
+    h2 { font-size: 21px; margin-bottom: 1em; color: #EEE;}
+    p { margin: 0 0 1em 0; }
+    a { color: #0000F0; }
+    a:hover { text-decoration: none; }
+    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
+    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
+    #container { padding: 2em; }
+    #welcome, #status {padding:1em; margin-bottom: 1em; background: url({{ frise }}) repeat-x bottom #397e40;}
+    #welcome h1 span { display: block; font-size: 75%; }
+    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
+    #icon-book { display: none; }
+    .texte{background: #F5F5F5; padding:1em; margin:0px}
+    .caloutch{margin:0em;}
+    .bord{border:1px solid red;}
+    .gauche{text-align:left;}
+    .droite{text-align:right;}
+    .encarth4{border-bottom: 2px solid #d4dde4;background: rgba(212,221,228,.5);padding:8px;}
+
+    @media (min-width: 768px) {
+        #wrapper { width: 80%; margin: 2em auto; }
+        #icon-book { display: inline-block; }
+        #status a, #next a { display: block; }
+
+        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <div class="row" id="welcome">
+        <div class="col-md-3 col-sm-3 droite">
+            <img class="img-fluid" src="ims/icocdt.png" alt="Cahier de texte S2i - option Génie Mécanique Construction"/>
+        </div>
+        <div class="col-md-4 col-sm-9 gauche">
+            <h1>Cahier de texte S2i</h1>
+        </div>
+        <div class="col-md-5 col-sm-12 gauche">
+            <h2>option Génie Mécanique Construction<br/>Lycée des Eucalyptus</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-12 caloutch" id="cal_contenu">{{ render(controller('AppBundle:Calendrier:cal')) }}<br/></div>
+
+        <div class="col-lg-9 col-md-12 texte ">
+            <h3><img src="ims/oggi.png" alt=""/> Nous sommes le {{ datedujour }}</h3>
+            <br/>
+            <h4 class="encarth4">Prochain devoir, pour le 03/11/2019 :</h4>
+            <p>Titre, texte de remplissage, exercice, ee...</p>
+            Sites et ou applis\cdt Fred> composer require /fullcalendar-bundle
+            Using version ^6.2 for toiba/fullcalendar-bundle
+            ./composer.json has been updated
+            Loading composer repositories with package information
+            Updating dependencies (including require-dev)
+
+            Texte de remplissage .. .. Allowed memory size of bla bla 1610612736 bytes exhausted (tried to allocate 76 bytes) in phar
+
+            <br/><br/>
+            <p>&lt;une image&gt;</p>
+
+            <br/>
+            Using version ^6.2 for toiba/fullcalendar-bundle
+            ./composer.json has been updated
+            Loading composer repositories with package information
+            Updating dependencies (including require-dev)
+
+            Allowed memory size of bla bla 1610612736 bytes exhausted (tried to allocate 76 bytes) in phar
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/calendrier.js"></script>
+{% endblock %}
