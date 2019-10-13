@@ -1,0 +1,22 @@
+AppBundle\Entity\Enonce:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\EnonceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        idDev:
+            type: integer
+            column: id_dev
+        ordre:
+            type: smallint
+        typec:
+            type: string
+            length: 255
+        contenu:
+            type: text
+    lifecycleCallbacks: {  }
