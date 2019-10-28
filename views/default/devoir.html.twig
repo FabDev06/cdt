@@ -1,0 +1,33 @@
+
+    <h4 class="encarth4">Prochain devoir, pour le {{ devoir.date|date("d/m/Y") }} :</h4>
+    <h4>{{ devoir.titre }}</h4>
+
+    {% for enonce in enonces %}
+        {% if enonce.typec == 'texte' %}
+            <p>{{ enonce.contenu|nl2br }}</p>
+        {% endif %}
+        {% if enonce.typec == 'image' %}
+            <img src="{{ enonce.contenu }}" class="img-fluid" alt="" /><p></p>
+        {% endif %}
+    {% endfor %}
+
+    {#
+    Zbouldel énoncés....
+    <br/>
+    Sites et ou applis\cdt Il s'agit d'un instantané de la page telle qu'elle était affichée le 23 sept. 2019 08:09:09 GMT. La page actuelle peut avoir changé depuis cette date. En savoir plus./fullcalendar-bundle            ./composer.json has been updated
+    Loading composer repositories with package information
+    Updating dependencies (including require-dev)
+
+    Texte de remplissage .. .. Allo wed memory size of bla bla 1610612736 bytes exhausted (tried to allocate 76 bytes) Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site web. Si vous continuez à utiliser ce site, nous supposerons que vous en êtes satisfait in phar
+
+    <br/><br/>
+    <p>&lt;une image&gt;</p>
+
+    <br/>
+    Using version ^6.2 for toiba/fullcalendar-bundle
+    ./composer.json has been updated
+    Loading composer repositories with package information
+    Updating dependencies (including require-dev)
+
+    Allowed memory size of bla bla 1610612736 bytes exhausted (tried to allocate 76 bytes) in phar
+    #}

@@ -1,0 +1,33 @@
+
+<div class="cal">
+    <h1>Agenda des devoirs</h1></br>
+
+            <button class="bouton" id="btng" onclick="prot_g({{ date.mois-1 }},{{ date.annee }}, 0);">◄</button>
+            <div class="mois">{{ date.tmois }} {{ date.annee }}</div>
+            <button class="bouton" id="btnd" onclick="prot_d({{ date.mois+1 }},{{ date.annee }}, 0);">►</button>
+
+    <p></p>
+    <div class="cal_div">
+
+        <div class="cal_cell njour">Lun</div>
+        <div class="cal_cell njour">Mar</div>
+        <div class="cal_cell njour">Mer</div>
+        <div class="cal_cell njour">Jeu</div>
+        <div class="cal_cell njour">Ven</div>
+        <div class="cal_cell njour">Sam</div>
+        <div class="cal_cell njour">Dim</div>
+
+        {% if start>1 %}
+        {% for i in 1..start-1 %}
+            <div class="cal_cell"></div>
+        {% endfor %}
+        {% endif %}
+
+        {% for i in 1..date.nbdays %}
+            <div class="cal_cell jour">{{ i }}</div>
+        {% endfor %}
+
+        <div class="cal_fin"></div>
+    </div>
+    
+</div>

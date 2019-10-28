@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cahier de texte S2i option Génie Mécanique Construction{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <div class="row" id="welcome">
+        <div class="col-md-3 col-sm-3 droite">
+            <img class="img-fluid" src="ims/icocdt.png" alt="Cahier de texte S2i - option Génie Mécanique Construction"/>
+        </div>
+        <div class="col-md-4 col-sm-9 gauche">
+            <h1>Cahier de texte S2i</h1>
+        </div>
+        <div class="col-md-5 col-sm-12 gauche">
+            <h2>option Génie Mécanique Construction<br/>Lycée des Eucalyptus</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-12 caloutch" id="cal_contenu">{{ render(controller('AppBundle:Calendrier:cal')) }}<br/></div>
+
+        <div class="col-lg-9 col-md-12 texte ">
+            <h3><img src="ims/oggi.png" alt=""/> Nous sommes le {{ datedujour }}</h3>
+            <br/>
+            <div id="divdev">{{ render(controller('AppBundle:Default:dev')) }}</div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
