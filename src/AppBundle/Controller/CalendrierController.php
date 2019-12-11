@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use Doctrine\DBAL\Schema\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,14 +42,44 @@ class CalendrierController extends Controller
             $response = new Response(json_encode(array('contenu' => $this->render('default/calendrier.html.twig', [
                 'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
                 'start' => $start,
-                'date' => [
+                'date' =>
+                [
                     'mois' => $mois,
                     'tmois' => $moises[$mois-1],
                     'annee' => $annee,
                     'nbdays' => $nb_days
-                    ]
+                ],
+                'oggi' => ['day'=>date('d'), 'mois'=>date('m'), 'an' =>date('Y')]
                 ])->getContent())));
             $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+        else
+        {
+            $mois = date('m');
+            $annee = date('Y');
+
+            $nb_days = cal_days_in_month(CAL_GREGORIAN, $mois, $annee);
+            $timestamp = mktime(0, 0, 0, $mois, 1, $annee); //Donne le timestamp correspondant à cette date 
+            $start=date('N', $timestamp);
+
+            //return $this->render('AppBundle::calendrier.html.twig', [
+            return $this->render('default/calendrier.html.twig', [
+                'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+                'start' => $start,
+                'date' =>
+                    [
+                        'mois' => $mois,
+                        'tmois' => $moises[$mois-1],
+                        'annee' => $annee,
+                        'nbdays' => $nb_days
+                    ],
+                'oggi' => ['day'=>date('d'), 'mois'=>$mois, 'an' =>$annee]
+                ]);
+        }
+    }
+}
+
             //$response->headers->set('Content-Type', 'text/html');
             
             /*new Response(
@@ -60,13 +90,8 @@ class CalendrierController extends Controller
             $response->prepare($request);
             $response->send();
             */
-            return $response;
-        }
-        else
-        {
-            $mois = date('m');
-            $annee = date('Y');
-            /*
+
+                        /*
             $prec=$mois-1;
             if($prec<=0)
             {
@@ -80,23 +105,5 @@ class CalendrierController extends Controller
                 $annee++;
             }
             */
-            $nb_days = cal_days_in_month(CAL_GREGORIAN, $mois, $annee);
-            $timestamp = mktime(0, 0, 0, $mois, 1, $annee); //Donne le timestamp correspondant à cette date 
-            $start=date('N', $timestamp);
-
-            //return $this->render('AppBundle::calendrier.html.twig', [
-            return $this->render('default/calendrier.html.twig', [
-                'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-                'start' => $start,
-                'date' => [
-                    'mois' => $mois,
-                    'tmois' => $moises[$mois-1],
-                    'annee' => $annee,
-                    'nbdays' => $nb_days
-                    ]
-                ]);
-        }
-    }
-}
 
 ?>
