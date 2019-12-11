@@ -38,7 +38,6 @@
 {
     background-color: #b7d6a5;
     color: #000;
-    cursor: pointer;
     border:none;
 }
 
@@ -58,4 +57,9 @@
     display: inline;
     padding:4px;
     color:#DDD;
+}
+
+.oggi
+{
+    background-color: orange;
 }
