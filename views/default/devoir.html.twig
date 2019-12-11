@@ -1,15 +1,20 @@
 
-    <h4 class="encarth4">Prochain devoir, pour le {{ devoir.date|date("d/m/Y") }} :</h4>
-    <h4>{{ devoir.titre }}</h4>
+    <h6 class="encarth4">Dernière séance, le {{ devoir.date|date("d/m/Y") }}</h6>
+    <strong>{{ devoir.titre }}</strong>
+    <br/>
 
-    {% for enonce in enonces %}
-        {% if enonce.typec == 'texte' %}
-            <p>{{ enonce.contenu|nl2br }}</p>
-        {% endif %}
-        {% if enonce.typec == 'image' %}
-            <img src="{{ enonce.contenu }}" class="img-fluid" alt="" /><p></p>
-        {% endif %}
-    {% endfor %}
+    <div style="height:548px;overflow:hidden">
+        {# 1er carrouzbew à ajouter #}
+
+        {% for enonce in enonces %}
+            {% if enonce.typec == 'texte' %}
+                <p>{{ enonce.contenu|raw }}</p>
+            {% endif %}
+            {% if enonce.typec == 'image' %}
+                <img src="{{ enonce.contenu }}" class="img-fluid" alt="" /><p></p>
+            {% endif %}
+        {% endfor %}
+    </div>
 
     {#
     Zbouldel énoncés....

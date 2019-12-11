@@ -1,6 +1,6 @@
 
 <div class="cal">
-    <h1>Agenda des devoirs</h1></br>
+    <h1>Calendrier des séances</h1></br>
 
             <button class="bouton" id="btng" onclick="prot_g({{ date.mois-1 }},{{ date.annee }}, 0);">◄</button>
             <div class="mois">{{ date.tmois }} {{ date.annee }}</div>
@@ -24,7 +24,15 @@
         {% endif %}
 
         {% for i in 1..date.nbdays %}
-            <div class="cal_cell jour">{{ i }}</div>
+            <div class="cal_cell jour">
+                {% if i==oggi.day and date.mois==oggi.mois and date.annee==oggi.an %}
+                 <div class="oggi">
+                    {{ i }}
+                 </div>
+                {% else %}
+                    {{ i }}
+                {% endif %}
+            </div>
         {% endfor %}
 
         <div class="cal_fin"></div>
