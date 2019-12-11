@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Cahier de texte S2i - Partie ADMIN
+{% endblock %}
+
+{% block body %}
+<div class="container-fluidre">
+
+    {% include('@Admin/Default/entete.html.twig') with {'datedujour':datedujour} %}
+
+    <div class="row">
+        <div class="col-lg-3 col-md-12">{% include('@Admin/Default/menu.html.twig') with {'puce':1} %}</div>
+
+        <div class="col-lg-9 col-md-12 texte" id="admin_contenu">
+            <h3>Liste des s&eacute;ances</h3>
+            {% for devoir in devoirs %}
+            <br/>
+            <div class="admdev">
+                Le {{ devoir.date|date("d.m.Y") }}<br/>
+                {{ devoir.titre }}<br/>
+                <div style="text-align:right">
+                    <a href="/admin-devoir-{{ devoir.id }}"><button class="bouton2"><img class="btndev" src="ims/devvoir.png" alt="Voir en détails" />oir en d&eacute;tails</button></a>
+                    <a href="/admin-modif-{{ devoir.id }}"><button class="bouton2"><img class="btndev" src="ims/devmod.png" alt="Modifier ce devoir" />odifier</button></a>
+                    <a href="/admin-suppr/{{ devoir.id }}"><button class="bouton2" onclick="return confirm('Confirmer la suppression ?');"><img class="btndev" src="ims/devsup.png" alt="Supprimer ce devoir" />upprimer</button></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

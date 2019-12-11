@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cahier de texte S2i - Partie ADMIN{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    {% include '@Admin/Default/entete.html.twig' with {'datedujour':datedujour} %}
+
+    <div class="row">
+        <div class="col-lg-3 col-md-12">{% include('@Admin/Default/menu.html.twig') with {'puce':1} %}</div>
+
+        <div class="col-lg-9 col-md-12 texte oh">
+            <div class="loate" id="loate"></div>
+            <div id="page_contenu">
+                <h4>Le {{ devoir.date|date("d m Y") }} :</h4>
+                <h3>{{ devoir.titre }}</h3>
+                {{ enonces|raw }}
+
+                {# % for enonce in enonces %}
+                    {% if enonce.typec == 'texte' %}
+                        {{ enonce.contenu|convert_encoding('UTF-8') }}
+                    {% endif %}
+                    {% if enonce.typec == 'image' %}
+                        <img src="{{ enonce.contenu }}" class="img-fluid" alt="" /><p></p>
+                    {% endif %}
+                {% endfor % #}
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/adm.js"></script>
+{% endblock %}

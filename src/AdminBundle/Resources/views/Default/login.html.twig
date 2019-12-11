@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cahier de texte S2i - Partie ADMIN{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <div class="row" id="welcome">
+        <div class="col-md-3 col-sm-3 droite">
+            <img class="img-fluid" src="ims/icocdt.png" alt="Cahier de texte S2i - option Génie Mécanique Construction"/>
+        </div>
+        <div class="col-md-4 col-sm-9 gauche">
+            <h1>Cahier de texte S2i</h1>
+        </div>
+        <div class="col-md-5 col-sm-12 gauche">
+            <h2>option Génie Mécanique Construction<br/>Lycée des Eucalyptus</h2>
+        </div>
+    </div>
+
+    <div align="center">
+        <div style="width:40%;text-align:center">
+            <h1>Connexion partie  <span class="rouge">Administrateur</span></h1><br/>
+            {# S'il y a une erreur, on l'affiche dans un joli cadre #}
+            {% if erreur %}
+                <div class="alert alert-danger">{{ erreur }}{{ erreur.messageKey|trans({}, 'security') }}</div>
+            {% endif %}
+
+            {# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
+            <form action="{{ path('login_check') }}" method="post">
+            <div style="text-align:right">
+                <label for="username"><h2>Nom utilisateur :</h2></label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                <br/>
+                <label for="password"><h2>Mot de passe :</h2></label>
+                <input type="password" id="password" name="_password" />
+            </div>
+                <br />
+                <input class="btnadm" type="submit" value="Connexion" />
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

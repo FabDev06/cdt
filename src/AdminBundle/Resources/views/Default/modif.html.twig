@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cahier de texte S2i - Partie ADMIN{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    {% include '@Admin/Default/entete.html.twig' with {'datedujour':datedujour} %}
+
+    <div class="row">
+        <div class="col-lg-3 col-md-12">{% include('@Admin/Default/menu.html.twig') with {'puce':0} %}</div>
+
+        <div class="col-lg-9 col-md-12 texte" id="admin_contenu">
+            <h3>Modification de la s&eacute;ance</h3>
+		    <h4>{{ devoir.titre }}</h4>
+            
+            <div class="row">
+                <div class="col-lg-9">
+                    {{ form_start(form) }}
+                    <div style="position:absolute;bottom:0px;width:100%"><input class="btnadm" type="submit" value="Enregistrer les modif. ci-dessus (Titre et Date only)" /></div>
+                    {{ form_end(form) }}
+                    <br/>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Classe : {{ classe.nom }}</h5>
+                    <h5><img src="ims/oggi.png" alt="" width="29"> H. début : {{ classe.heureDebut|date("H:i") }}</h5>
+                    <h5><img src="ims/oggi.png" alt="" width="29"> H. fin : {{ classe.heureFin|date("H:i") }}</h5>
+                </div>
+            </div>
+
+            <br/>
+            {% for enonce in contenus %}
+            <div class="admdev" style="position:relative">
+                <a name="enonce{{ enonce.id }}"/>
+                <div class="div_btn" id="div_btn{{ enonce.id }}" onclick="swap({{ enonce.id }},'{{ enonce.typec }}')">
+                    <img class="btndev" src="ims/devmod.png" alt="Modifier" />odifier
+                </div>
+                    {% if enonce.typec == 'image' %}
+                        <img id="cimg{{ enonce.id }}" src="{{ enonce.contenu }}" alt="" class="img-fluid"/>
+                        <div id="div_rep_img{{ enonce.id }}" style="display:none">
+                            <form name="fform{{ enonce.id }}" action="admin-enonce-modif-{{ enonce.id }}" method="post" enctype="multipart/form-data">
+                                Remplacer la photo par : <input type="file" name="contenu" />
+                                <input class="btnadm" type="submit" value="Enregistrer cette nouvelle photo"/>
+                            </form>
+                        </div>
+                    {% else %}
+                        <div id="div_raw{{ enonce.id }}">{{ enonce.contenu|raw }}</div>
+                        <div id="div_rep_txt{{ enonce.id }}" style="display:none">
+                            <form name="fform{{ enonce.id }}" action="admin-enonce-modif-{{ enonce.id }}" method="post">
+                                <textarea id="tata{{ enonce.id }}" name="contenu">{{ enonce.contenu }}</textarea>
+                                <br/>
+                                <input class="btnadm" type="submit" value="Enregistrer ce nouveau texte"/>
+                            </form>
+                        </div>
+                    {% endif %}
+            </div>
+            <p></p>
+            {% endfor %}
+
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="ckeditor/ckeditor.js"></script>
+    <script src="js/adm.js"></script>
+{% endblock %}

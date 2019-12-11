@@ -1,0 +1,14 @@
+﻿    <h3>Ajout d'une nouvelle séance, étape 2 : </h3>
+    <br/>
+    <button class="btnadm" onclick="ajout_ed()">+ ajouter un énoncé ou du texte</button>
+    <br/>
+    <button class="btnadm" onclick="ajout_im()">+ ajouter une photo ou une image</button>
+    <br/>
+        <div id="div_enonces">
+            <form name="mystere" method="post">
+                <input type="hidden" name="id_dev" value="{{ id_dev }}"/>
+                <input type="hidden" name="ordre" value="0" />
+            </form>
+        </div>
+        <br/>
+    <button class="btnadm" onclick="ajout_en()">√ Enregistrer et terminer</button>

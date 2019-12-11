@@ -1,0 +1,5 @@
+﻿    <button class="btnadm">√ La séance a bien été enregistrée !</button>
+    <br/><br/>
+    <h4>Le {{ devoir.date|date("d m Y") }} :</h4>
+    <h3>"{{ devoir.titre }}" (séance n°{{ devoir.id }})</h3> 
+    {{ enonces|raw }}
