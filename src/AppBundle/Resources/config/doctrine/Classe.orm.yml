@@ -1,0 +1,19 @@
+AppBundle\Entity\Classe:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ClasseRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        heureDebut:
+            type: time
+        heureFin:
+            type: time
+    lifecycleCallbacks: {  }

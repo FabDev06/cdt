@@ -9,6 +9,8 @@ AppBundle\Entity\Devoir:
             generator:
                 strategy: AUTO
     fields:
+        classe:
+            type: integer
         titre:
             type: string
             length: 255
