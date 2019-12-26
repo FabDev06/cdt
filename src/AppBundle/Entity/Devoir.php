@@ -2,15 +2,27 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * Devoir
+ * c'est la classe Devoir
+ *
+ * @ORM\Table(name="devoir")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DevoirRepository")
  */
 class Devoir
 {
-    /**
+    /** 
      * @var int
      */
     private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="classe", type="integer")
+     */
+    private $classe;
 
     /**
      * @var string
@@ -22,6 +34,13 @@ class Devoir
      */
     private $date;
 
+    // contructeur ajouté APRES la génération par ligne de commande avec doctrine
+    // permet d'avoir la date du jour déjà remplie dans les select d'un form de nouveau devoir
+    // https://openclassrooms.com/fr/courses/3619856-developpez-votre-site-web-avec-le-framework-symfony/3623841-creer-des-formulaires-avec-symfony
+    public function __construct()
+    {
+      $this->date = new \Datetime();
+    }
 
     /**
      * Get id
@@ -31,6 +50,28 @@ class Devoir
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get classe
+     *
+     * @return int
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
+
+    /**
+     * Set classe
+     *
+     * @return int
+     */
+    public function setClasse($classe)
+    {
+        $this->classe = $classe;
+
+        return $this;
     }
 
     /**
