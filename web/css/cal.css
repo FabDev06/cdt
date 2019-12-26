@@ -63,3 +63,10 @@
 {
     background-color: orange;
 }
+
+.jour_seance
+{
+    background-image: url('../ims/jour_seance.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
