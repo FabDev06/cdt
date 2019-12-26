@@ -13,7 +13,7 @@ class CalendrierController extends Controller
     /** 
      * @Route("/cal_ajap") 
     */
-    public function calAction(Request $request)
+    public function calAction(Request $request,$mois=null,$annee=null)
     {
         $moises = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
         
@@ -39,6 +39,15 @@ class CalendrierController extends Controller
             $timestamp = mktime(0, 0, 0, $mois, 1, $annee); //Donne le timestamp correspondant à cette date 
             $start=date('N', $timestamp);
 
+            // scan BDD du mois en cours
+            //$seance = $this->getDoctrine()->getRepository('AppBundle:Devoir')->find($id);
+            if($mois<10)
+                $quer="SELECT e FROM AppBundle:Devoir e WHERE e.date LIKE '$annee-0$mois-%' ORDER BY e.date DESC";
+            else
+                $quer="SELECT e FROM AppBundle:Devoir e WHERE e.date LIKE '$annee-$mois-%' ORDER BY e.date DESC";
+
+            $seances = $this->getDoctrine()->getManager()->createQuery($quer)->getResult();
+
             $response = new Response(json_encode(array('contenu' => $this->render('default/calendrier.html.twig', [
                 'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
                 'start' => $start,
@@ -49,21 +58,38 @@ class CalendrierController extends Controller
                     'annee' => $annee,
                     'nbdays' => $nb_days
                 ],
-                'oggi' => ['day'=>date('d'), 'mois'=>date('m'), 'an' =>date('Y')]
-                ])->getContent())));
+                'oggi' => ['day'=>date('d'), 'mois'=>date('m'), 'an' =>date('Y')],
+                'seances' => $seances
+            ])->getContent())));
+            
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
         else
         {
-            $mois = date('m');
-            $annee = date('Y');
+            if($mois==null && $annee==null)
+            {
+                $mois = date('m');
+                $annee = date('Y');
+            }
 
             $nb_days = cal_days_in_month(CAL_GREGORIAN, $mois, $annee);
             $timestamp = mktime(0, 0, 0, $mois, 1, $annee); //Donne le timestamp correspondant à cette date 
             $start=date('N', $timestamp);
 
-            //return $this->render('AppBundle::calendrier.html.twig', [
+            // scan BDD du mois en cours
+            if($mois<10)
+                $quer="SELECT e FROM AppBundle:Devoir e WHERE e.date LIKE '%-0$mois-%' ORDER BY e.date DESC";
+            else
+                $quer="SELECT e FROM AppBundle:Devoir e WHERE e.date LIKE '%-$mois-%' ORDER BY e.date DESC";
+
+            $seances = $this->getDoctrine()->getManager()->createQuery($quer)->getResult();
+            /*
+            $rtrt=fopen('cazz.txt','w+');
+            fwrite($rtrt,print_r($seances,true));
+            fclose($rtrt);
+            */
+
             return $this->render('default/calendrier.html.twig', [
                 'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
                 'start' => $start,
@@ -74,7 +100,8 @@ class CalendrierController extends Controller
                         'annee' => $annee,
                         'nbdays' => $nb_days
                     ],
-                'oggi' => ['day'=>date('d'), 'mois'=>$mois, 'an' =>$annee]
+                'oggi' => ['day'=>date('d'), 'mois'=>date('m'), 'an' =>date('Y')],
+                'seances' => $seances
                 ]);
         }
     }
