@@ -599,17 +599,6 @@ class DefaultController extends Controller
             // ne peut pas être "submité" car on vient de $.post ajap qui post sans passer par un input type="submit"
             // re-correction, on est obligé de passer par submit, sinon le isValid bloque aussi avec son retour false si form non submité
             //$form->submit($request->request->get($form->getName())); // ne marche pas... Invalid Token
-            /*
-            $out_pute = new ConsoleOutput();
-            $get_pute = $request->getContent(); //$request->request->get('form')->getContent();
-
-            $out_pute->writeln("\n** contenu request = ".$get_pute);
-            $out_pute->writeln("\n** vardump = ".var_dump($get_pute));
-            */
-            //$data = $request->request->get('form'); //json_decode(urldecode($get_pute),TRUE);
-            //$out_pute->writeln("\n** contenu data= ".$data);
-
-            //$out_pute->writeln("\n** erreur(s) : ".$form->getErrors());
 
 
 // On redirige vers la page de visualisation de l'annonce nouvellement créée
@@ -647,7 +636,7 @@ class DefaultController extends Controller
                     ["ordre3"]=> string(1) "3"
                     ["ed3"]=> string(4) "prit"
                     ["ordre4"]=> string(1) "4"
-                    ["ed4"]=> string(5) "prout"
+                    ["ed4"]=> string(5) ""
                 }
             }
             */
@@ -846,14 +835,6 @@ Toutes les méthodes de UploadedFile :
 
     */
 
-                /*
-                $mangemerde=fopen('quete.txt','w+');
-                fwrite($mangemerde,$request->getContent());
-                fclose($mangemerde);
-                $mangemerde=fopen('merte.txt','w+');
-                fwrite($mangemerde,"- idDev=".$idDev[2]."\n- ordre=".$ordre[2]);
-                fclose($mangemerde);
-                */
                 /*
                 if($enonce->getTypec()=='image')
                 {
