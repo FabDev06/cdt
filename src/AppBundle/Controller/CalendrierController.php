@@ -107,4 +107,30 @@ class CalendrierController extends Controller
     }
 }
 
+            //$response->headers->set('Content-Type', 'text/html');
+            
+            /*new Response(
+                'caca',
+                Response::HTTP_OK,
+                ['content-type' => 'text/html']
+            );
+            $response->prepare($request);
+            $response->send();
+            */
+
+                        /*
+            $prec=$mois-1;
+            if($prec<=0)
+            {
+                $prec=12;
+                $annee--;
+            }
+            $suiv=$mois+1;
+            if($suiv>=13)
+            {
+                $suiv=1;
+                $annee++;
+            }
+            */
+
 ?>
